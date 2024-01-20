@@ -1,12 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { makeFilter, getFilter } from '../../redux/filterSlice';
+import { makeFilter, getFilter } from '../../redux/contacts/filterSlice';
 
 function Filter() {
   const filterValue = useSelector(getFilter);
   const dispatch = useDispatch();
 
   // Збереження значення фільтру
-  const handleFilter = ({ currentTarget }) => dispatch(makeFilter(currentTarget.value));
+  const handleFilter = ({ currentTarget }) =>
+    dispatch(makeFilter(currentTarget.value));
 
   return (
     <>

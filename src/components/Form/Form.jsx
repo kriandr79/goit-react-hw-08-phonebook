@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getContacts } from '../../redux/contactsSlice';
-import { addContact } from '../../redux/operations';
-import css from './Form.module.css'
+import { getContacts } from '../../redux/contacts/selectors';
+import { addContact } from '../../redux/contacts/operations';
+import css from './Form.module.css';
 
-
-function Form({onSubmit}) {
+function Form({ onSubmit }) {
   const [name, setName] = useState();
-  const [phone, setNumber] = useState();
+  const [number, setNumber] = useState();
 
   const dispatch = useDispatch();
   const contactsList = useSelector(getContacts);
@@ -19,7 +18,7 @@ function Form({onSubmit}) {
       case 'name':
         setName(value);
         break;
-      case 'phone':
+      case 'number':
         setNumber(value);
         break;
       default:
@@ -31,11 +30,11 @@ function Form({onSubmit}) {
   const handleFormSubmit = e => {
     e.preventDefault();
     if (contactsList.find(contact => contact.name === name)) {
-      alert(`${name} is already exist in the phonebook!`);
+      alert(`${name} is already exist in the numberbook!`);
       return;
     }
-    
-    dispatch(addContact({name, phone}));
+
+    dispatch(addContact({ name, number }));
     reset();
   };
 
@@ -46,7 +45,7 @@ function Form({onSubmit}) {
 
   return (
     <>
-      <h2>Phonebook</h2>
+      <h2>numberbook</h2>
       <div className={css.formdiv}>
         <form className={css.form} onSubmit={handleFormSubmit}>
           <label>
@@ -63,8 +62,8 @@ function Form({onSubmit}) {
             <p>Number:</p>
             <input
               type="tel"
-              name="phone"
-              value={phone}
+              name="number"
+              value={number}
               onChange={handleInput}
               pattern="[0-9\-]+"
               required

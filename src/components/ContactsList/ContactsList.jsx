@@ -1,12 +1,18 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { getContacts } from '../../redux/contactsSlice';
-import { getFilter } from '../../redux/filterSlice';
-import { deleteContact } from '../../redux/operations';
+import { useEffect } from 'react';
+import { getContacts } from '../../redux/contacts/selectors';
+import { getFilter } from '../../redux/contacts/filterSlice';
+import { deleteContact, fetchContacts } from '../../redux/contacts/operations';
 
 function ContactList() {
   const dispatch = useDispatch();
   const filterValue = useSelector(getFilter);
   const contactsList = useSelector(getContacts);
+
+  // Завантаження списку контактів
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   // Видалення контакту
   const removeContact = contactId => dispatch(deleteContact(contactId));
@@ -19,11 +25,10 @@ function ContactList() {
 
   return (
     <>
-     
       <ul>
-        {filteredContacts.map(({ name, phone, id }) => (
+        {filteredContacts.map(({ name, number, id }) => (
           <li key={id}>
-            {name}: {phone}{' '}
+            {name}: {number}{' '}
             <button type="button" onClick={() => removeContact(id)}>
               delete
             </button>
