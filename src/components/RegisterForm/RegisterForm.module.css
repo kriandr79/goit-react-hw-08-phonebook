@@ -1,6 +1,6 @@
 .formdiv {
     width: 100%;
-    background-color: rgb(239, 239, 239);
+    background-color: lightgreen;
     /* border: lightblue 1px solid; */
 
     margin-bottom: 20px;
@@ -15,7 +15,7 @@
     padding:10px;
 }
 .form input {
-    width:300px;
+    width:200px;
     height: 26px;
     font-size: 16px;
     outline-color: green;

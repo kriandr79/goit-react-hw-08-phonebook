@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { makeFilter, getFilter } from '../../redux/contacts/filterSlice';
+import css from './Filter.module.css'
 
 function Filter() {
   const filterValue = useSelector(getFilter);
@@ -11,9 +12,8 @@ function Filter() {
 
   return (
     <>
-      <h2>Contacts</h2>
-      <label>
-        Find contact:
+      <label className={css.filter}>
+        <span>Quick contact find: </span>
         <input
           type="text"
           name="filter"

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getContacts } from '../../redux/contacts/selectors';
 import { addContact } from '../../redux/contacts/operations';
 import css from './Form.module.css';
+import { Button } from 'components/Button/Button';
 
 function Form({ onSubmit }) {
   const [name, setName] = useState();
@@ -45,7 +46,6 @@ function Form({ onSubmit }) {
 
   return (
     <>
-      <h2>numberbook</h2>
       <div className={css.formdiv}>
         <form className={css.form} onSubmit={handleFormSubmit}>
           <label>
@@ -56,6 +56,7 @@ function Form({ onSubmit }) {
               value={name}
               onChange={handleInput}
               required
+              placeholder='Ilon Musk'
             />
           </label>
           <label>
@@ -67,11 +68,12 @@ function Form({ onSubmit }) {
               onChange={handleInput}
               pattern="[0-9\-]+"
               required
+              placeholder='999 999-999-999'
             />
           </label>
-          <button className={css.btn} type="submit">
-            Add contact
-          </button>
+          <Button type="submit" btnstyle="newcontact">
+            Add New Contact
+          </Button>
         </form>
       </div>
     </>

@@ -5,7 +5,7 @@ import Form from "components/Form/Form";
 const Contacts = () => {
   return (
     <>
-      <div>Contacts Page</div>
+      <h1>My Contacts</h1>
       <Form />
       <Filter/>
       <ContactList/>

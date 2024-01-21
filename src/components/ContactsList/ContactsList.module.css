@@ -1,0 +1,25 @@
+.contactslist {
+    list-style-type: none;
+    padding-left: 0;
+}
+.items {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: lightblue 1px solid;
+    border-radius: 10px;
+}
+.items:hover {
+    background-color: lightblue;
+    font-weight: 700;
+}
+.name {
+    width: 300px;
+    max-width: 300px;
+}
+.number {
+    width: 300px;
+    max-width: 300px;
+}

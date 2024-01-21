@@ -3,6 +3,8 @@ import { useEffect } from 'react';
 import { getContacts } from '../../redux/contacts/selectors';
 import { getFilter } from '../../redux/contacts/filterSlice';
 import { deleteContact, fetchContacts } from '../../redux/contacts/operations';
+import css from './ContactsList.module.css'
+import { Button } from 'components/Button/Button';
 
 function ContactList() {
   const dispatch = useDispatch();
@@ -23,19 +25,25 @@ function ContactList() {
     contact.name.toLowerCase().includes(normalazedFilter)
   );
 
-  return (
+  console.log(filteredContacts)
+  return filteredContacts.length > 0 ? (
     <>
-      <ul>
+      <h2>Conctacts ({filteredContacts.length}):</h2>
+
+      <ul className={css.contactslist}>
         {filteredContacts.map(({ name, number, id }) => (
-          <li key={id}>
-            {name}: {number}{' '}
-            <button type="button" onClick={() => removeContact(id)}>
+          <li key={id} className={css.items}>
+            <span className={css.name}>{name}</span>
+            <span className={css.number}>{number}</span>
+            <Button type="submit" btnstyle="delete" onClick={() => removeContact(id)}>
               delete
-            </button>
+            </Button>
           </li>
         ))}
       </ul>
     </>
+  ) : (
+    <h2>No contacts have found...</h2>
   );
 }
 

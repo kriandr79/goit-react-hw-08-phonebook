@@ -6,8 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useAuth } from '../hooks/useAuth';
 import PrivateRoute from 'guards/PrivateRoute';
 import PublicRoute from 'guards/PublicRoute';
-import Loader from './Loader/Loader';
-import Error from './Error/Error';
+
 
 const HomePage = lazy(() => import('../pages/Home'));
 const ContactsPage = lazy(() => import('../pages/Contacts'));
@@ -17,18 +16,17 @@ const RegisterPage = lazy(() => import('../pages/Register'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const {isRefreshing } = useAuth()
-
-
+  const {isRefreshing, token } = useAuth()
+  
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+    token && dispatch(refreshUser());
+
+  }, [dispatch, token]);
 
   return (
     !isRefreshing && (
       <>
-      <Loader />
-      <Error/>
+
       <Suspense fallback={<>Loading...</>}>
         <Routes>
           <Route path="/" element={<Layout />}>
